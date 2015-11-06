@@ -1,0 +1,43 @@
+{{template "header"}}
+<title>首页</title>
+</head>
+<body>
+{{template "navbar" .}}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-10">
+            {{if .IsLogin}}
+            <form class="form-inline" method="post" action="/catagory">
+                <div class="form-group">
+                    <!--<label>分类</label>-->
+                    <input class="form-control" placeholder="分类" name="catagory">
+                </div>
+                <button type="submit" class="btn btn-default">添加</button>
+            </form>
+            {{end}}
+            <table class="table table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range .catagories}}
+                <tr>
+                    <td>{{.Title}}</td>
+                    <td>{{dateformat .Created "2006-01-02 15:04:05"}}</td>
+                    <td><a href="/catagory?op=del&id={{.Id}}">Delete</a></td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2">.col-md-2</div>
+    </div>
+</div>
+{{template "footer"}}
+</body>
+</html>
