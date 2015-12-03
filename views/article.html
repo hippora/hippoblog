@@ -1,5 +1,5 @@
 {{template "header"}}
-<title>首页</title>
+<title>文章</title>
 </head>
 <body>
 {{template "navbar" .}}
@@ -23,7 +23,7 @@
                 {{range .articles}}
                 <tr>
                     <td>{{.Id}}</td>
-                    <td>{{.Title}}</td>
+                    <td><a href="/article/view/{{.Id}}">{{.Title}}</a></td>
                     <td>{{.ViewCount}}</td>
                     <td>{{.Created}}</td>
                 </tr>
@@ -35,6 +35,6 @@
 
     </div>
 </div>
-{{template "footer"}}
+{{template "footer" .}}
 </body>
 </html>

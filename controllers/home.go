@@ -11,20 +11,17 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	/*v := c.GetSession("asta")
-	if v == nil {
-		c.SetSession("asta", int64(1))
-	}
-	c.Data["username"] = v.(int64)
-	*/
-
-	//	models.AddUser()
-	users, err := models.GetUsers()
+	articles, err := models.GetArticles()
 	if err != nil {
 		beego.Error(err)
 	}
+	c.Data["articles"] = articles
 
-	c.Data["users"] = users
+	catagories,err := models.GetCatagories()
+	if err!= nil {
+		beego.Error(err)
+	}
+	c.Data["catagories"] = catagories
 
 	c.Data["IsHome"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
