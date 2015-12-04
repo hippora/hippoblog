@@ -9,9 +9,9 @@ before_install:
   - go version
 
 install:
-  - go get -v ./...
+  - go get -v
 
-script: go build -v ./...
+script: go build -v
 
 notifications:
   email:
