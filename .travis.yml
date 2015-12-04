@@ -11,7 +11,7 @@ before_install:
 install:
   - go get -v ./...
 
-script: go build -v 
+script: go build -v ./...
 
 notifications:
   email:
