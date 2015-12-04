@@ -9,7 +9,7 @@ before_install:
   - go version
 
 install:
-  - go get -v -t ./...
+  - go get -v ./...
 
 script: go build -v 
 
