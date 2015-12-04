@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"hippoblog/models"
 	"github.com/astaxie/beego/context"
+	"github.com/hippora/hippoblog/models"
 )
 
 type MainController struct {

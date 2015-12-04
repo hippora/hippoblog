@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"hippoblog/models"
+	"github.com/hippora/hippoblog/models"
 )
 
 type CatagoryController struct {
@@ -12,6 +12,10 @@ type CatagoryController struct {
 func (c *CatagoryController) Get() {
 	switch c.Input().Get("op") {
 	case "del":
+		if ! IsLogin(c.Ctx) {
+			c.Redirect("/login",301)
+			return
+		}
 		models.DelCatagory(c.Input().Get("id"))
 		break
 	}

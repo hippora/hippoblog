@@ -6,8 +6,7 @@ import (
 	"testing"
 	"runtime"
 	"path/filepath"
-	_ "hippoblog/routers"
-
+	_ "github.com/hippora/hippoblog/routers"
 	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"
 )

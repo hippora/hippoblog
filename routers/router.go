@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"hippoblog/controllers"
 	"github.com/astaxie/beego"
+    "github.com/hippora/hippoblog/controllers"
 )
 
 func init() {

@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"hippoblog/models"
+	"github.com/hippora/hippoblog/models"
 )
 
 type ArticleController struct {

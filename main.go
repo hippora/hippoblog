@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "hippoblog/routers"
+	_ "github.com/hippora/hippoblog/routers"
 	"github.com/astaxie/beego"
 )
 
