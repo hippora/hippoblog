@@ -10,15 +10,15 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h3 class="post-title"><a href="/article/view/{{.Id}}">{{.Title}}</a></h3>
-                    <div class="post-meta">
-                        <span><i class="fa fa-calendar"></i>&nbsp;2015-09-08　</span>
-                        <span><i class="fa fa-user"></i>&nbsp;<a href="#">作者</a>　</span>
-                        <span><i class="fa fa-eye"></i>&nbsp;阅读 296 　</span>
-                        <span><i class="fa fa-book"></i>&nbsp;　</span>
-                        <span><i class="fa fa-comments-o"></i>&nbsp;<a href="#">0 评论</a></span>
-                    </div>
                     <div class="post-content">
                         <p>{{.Content}}</p>
+                    </div>
+                    <div class="post-meta ">
+                        <span>@<i class="fa fa-user"></i><a href="#">{{.Author}}</a>　</span>
+                        <span><i class="fa fa-eye"></i>阅读:{{.ViewCount}}</span>
+                        <span><i class="fa fa-book"></i></span>
+                        <span><i class="fa fa-comments-o"></i>评论:<a href="#">{{.ViewCount}}</a></span>
+                        <span><i class="fa fa-calendar"></i>{{dateformat .Created "2006-01-02 15:04:05"}}　</span>
                     </div>
                 </div>
             </div>

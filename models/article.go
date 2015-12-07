@@ -9,18 +9,20 @@ type Article struct {
 	Id        int64
 	Title     string
 	Content   string
+	Author    string
+	Catagory  int64
 	ViewCount int64
 	Created   time.Time
 }
 
 func AddArticle(title, content string) error {
-	_, err := db.Insert(&Article{Title: title, Content:content, Created:time.Now()})
+	_, err := db.Insert(&Article{Title: title, Content:content, Author:"admin", Created:time.Now()})
 	return err
 }
 
 func GetArticles() ([]*Article, error) {
 	articles := make([]*Article, 0)
-	err := db.Find(&articles)
+	err := db.Desc("Created").Find(&articles)
 	return articles, err
 }
 

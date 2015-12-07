@@ -19,6 +19,7 @@
             <table class="table table-hover table-condensed">
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Title</th>
                     <th>Created</th>
                     <th>Operation</th>
@@ -27,6 +28,7 @@
                 <tbody>
                 {{range .catagories}}
                 <tr>
+                    <td>{{.Id}}</td>
                     <td>{{.Title}}</td>
                     <td>{{dateformat .Created "2006-01-02 15:04:05"}}</td>
                     <td><a href="/catagory?op=del&id={{.Id}}">Delete</a></td>
