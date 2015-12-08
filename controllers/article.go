@@ -10,12 +10,12 @@ type ArticleController struct {
 }
 
 func (c *ArticleController) Get() {
-	articles, err := models.GetArticles()
+	awcs, err := models.GetArticleWithCataNames()
 	if err != nil {
 		beego.Error(err)
 	}
 
-	c.Data["articles"] = articles
+	c.Data["awcs"] = awcs
 
 	c.Data["IsArticle"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
@@ -27,6 +27,12 @@ func (c *ArticleController) Add() {
 		c.Redirect("/login",301)
 		return
 	}
+	catagories,err := models.GetCatagories()
+	if err!= nil {
+		beego.Error(err)
+	}
+	c.Data["catagories"] = catagories
+
 	c.Data["IsArticle"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
 	c.TplNames = "article_add.html"
@@ -38,9 +44,10 @@ func (c *ArticleController) Post() {
 		return
 	}
 	title := c.Input().Get("title")
+	cid := c.Input().Get("cid")
 	content := c.Input().Get("content")
 	if len(title) !=0 && len(content) !=0 {
-		models.AddArticle(title,content)
+		models.AddArticle(title,cid,content)
 	}
 	c.Redirect("/article",301)
 }

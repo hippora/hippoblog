@@ -6,17 +6,26 @@ import (
 )
 
 type Article struct {
-	Id        int64
-	Title     string
-	Content   string
-	Author    string
-	Catagory  int64
-	ViewCount int64
-	Created   time.Time
+	Id         int64
+	Title      string
+	Content    string
+	Author     string
+	CatagoryId int64
+	ViewCount  int64
+	Created    time.Time
 }
 
-func AddArticle(title, content string) error {
-	_, err := db.Insert(&Article{Title: title, Content:content, Author:"admin", Created:time.Now()})
+type ArticleWithCatagory struct {
+	Article
+	Catagory
+}
+
+func AddArticle(title, cid, content string) error {
+	ccid, err := strconv.ParseInt(cid, 10, 64)
+	if err != nil {
+		return err
+	}
+	_, err = db.Insert(&Article{Title: title, CatagoryId: ccid, Content:content, Author:"admin", Created:time.Now()})
 	return err
 }
 

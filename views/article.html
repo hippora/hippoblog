@@ -6,9 +6,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/article">Article</a></li>
+                <li class="active">文章列表</li>
+            </ol>
             <div class="row">
-                <div class="col-sm-6"><h2>文章列表</h2></div>
-                <div class="col-sm-6"><a class="btn btn-default " href="/article/add">添加文章</a></div>
+                <div class="pull-right"><a class="btn btn-default " href="/article/add">添加文章</a></div>
             </div>
             <table class="table table-hover table-condensed">
                 <thead>
@@ -20,7 +24,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{range .articles}}
+                {{range .awcs}}
                 <tr>
                     <td>{{.Id}}</td>
                     <td><a href="/article/view/{{.Id}}">{{.Title}}</a></td>

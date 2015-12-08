@@ -13,6 +13,15 @@
                     <input type="text" class="form-control" placeholder="文章标题" name="title">
                 </div>
                 <div class="form-group">
+                    <label>所属分类</label>
+                    <select class="form-control" name="cid">
+                        <option value="-1">未分类</option>
+                        {{range .catagories}}
+                        <option value="{{.Id}}">{{.Title}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>文章内容</label>
                     <textarea rows="15" class="form-control" placeholder="文章内容" name="content"></textarea>
                 </div>

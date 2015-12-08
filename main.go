@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	beego.EnableAdmin = true
+	//beego.EnableAdmin = true
 	beego.Run()
 }
 

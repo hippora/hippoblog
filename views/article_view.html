@@ -14,12 +14,15 @@
                     <div class="post-content">
                         <p>{{.Content}}</p>
                     </div>
-                    <div class="post-meta ">
-                        <span>@<i class="fa fa-user"></i><a href="#">{{.Author}}</a>　</span>
-                        <span><i class="fa fa-eye"></i>阅读:{{.ViewCount}}</span>
-                        <span><i class="fa fa-book"></i></span>
-                        <span><i class="fa fa-comments-o"></i>评论:<a href="#">{{.ViewCount}}</a></span>
-                        <span><i class="fa fa-calendar"></i>{{dateformat .Created "2006-01-02 15:04:05"}}　</span>
+                    <div class="post-meta">
+                        <div class="col-md-offset-6">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span>{{.Author}} | </span>
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            <span>{{.ViewCount}} | </span>
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            <span>{{dateformat .Created "2006-01-02 15:04:05"}} |</span>
+                        </div>
                     </div>
                 </div>
             </div>

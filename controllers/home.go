@@ -11,11 +11,11 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	articles, err := models.GetArticles()
+	awcs, err := models.GetArticleWithCataNames()
 	if err != nil {
 		beego.Error(err)
 	}
-	c.Data["articles"] = articles
+	c.Data["awcs"] = awcs
 
 	catagories,err := models.GetCatagories()
 	if err!= nil {
