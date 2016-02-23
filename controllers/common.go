@@ -27,14 +27,25 @@ func IsLogin(ctx *context.Context) bool {
 }
 
 func CalcPaginate(pageNum,maxPages int64) *Paginate {
+	p := int(pageNum)
+	x := int(maxPages)
+	if p < 1 {
+		p = 1
+	}
+	if p > x {
+		p = x
+	}
 	paginate := new(Paginate)
-	paginate.HasPrevious = pageNum > 1
-	paginate.HasNext = pageNum < maxPages
-	paginate.Previous = int(pageNum) -1
-	paginate.Next = int(pageNum) + 1
+	paginate.HasPrevious = p > 1
+	paginate.HasNext = p < x
+	paginate.Previous = p -1
+	paginate.Next = p + 1
 	for i,v := range [...]int{-4,-3,-2,-1,0,1,2,3,4} {
 		item := new(PageItem)
-		item.Current = v + int(pageNum)
+		item.Current = v + p
+		if item.Current > x {
+			item.Current = - 1 //hidden page
+		}
 		item.IsCurrent = v == 0
 		paginate.Items[i] = item
 	}
