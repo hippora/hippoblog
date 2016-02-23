@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
 	"github.com/hippora/hippoblog/models"
+	"strconv"
 )
 
 type MainController struct {
@@ -11,14 +11,20 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	awcs, err := models.GetArticleWithCataNames()
+	page,err := strconv.ParseInt(c.Input().Get("p"),10,64)
+	if err != nil ||  page < 1 {
+		page = 1
+	}
+	awcs, err := models.GetArticleWithCataNames(page)
 	if err != nil {
 		beego.Error(err)
 	}
+
+	c.Data["pages"] = CalcPaginate(page,100)
 	c.Data["awcs"] = awcs
 
-	catagories,err := models.GetCatagories()
-	if err!= nil {
+	catagories, err := models.GetCatagories()
+	if err != nil {
 		beego.Error(err)
 	}
 	c.Data["catagories"] = catagories
@@ -26,14 +32,4 @@ func (c *MainController) Get() {
 	c.Data["IsHome"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
 	c.TplNames = "home.html"
-}
-
-func IsLogin(ctx *context.Context) bool {
-	username := ctx.GetCookie("username")
-	password := ctx.GetCookie("password")
-	if beego.AppConfig.String("username") == username &&
-	beego.AppConfig.String("password") == password {
-		return true
-	}
-	return false
 }

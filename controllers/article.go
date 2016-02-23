@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/hippora/hippoblog/models"
+	"strconv"
 )
 
 type ArticleController struct {
@@ -10,11 +11,16 @@ type ArticleController struct {
 }
 
 func (c *ArticleController) Get() {
-	awcs, err := models.GetArticleWithCataNames()
+	page,err := strconv.ParseInt(c.Input().Get("p"),10,64)
+	if err != nil ||  page < 1 {
+		page = 1
+	}
+	awcs, err := models.GetArticleWithCataNames(page)
 	if err != nil {
 		beego.Error(err)
 	}
 
+	c.Data["pages"] = CalcPaginate(page,100)
 	c.Data["awcs"] = awcs
 
 	c.Data["IsArticle"] = true

@@ -1,14 +1,15 @@
 package models
 
-
 type ArticleWithCataName struct {
 	Article `xorm:"extends"`
 	CataName string
 }
 
-func GetArticleWithCataNames() ([]*ArticleWithCataName, error) {
+func GetArticleWithCataNames(page int64) ([]*ArticleWithCataName, error) {
 	awcs := make([]*ArticleWithCataName, 0)
-	err := db.Sql("select a.*,(select title from catagory where id = a.catagory_id) as cata_name from article a order by created desc").Find(&awcs)
+	start := (page - 1) * 10
+	//err := db.Limit(1,1).Sql("select a.*,(select title from catagory where id = a.catagory_id) as cata_name from article a order by created desc").Find(&awcs)
+	err := db.Table("article").Join("left","catagory","article.catagory_id=catagory.id").Limit(10,int(start)).Find(&awcs)
 	return awcs, err
 }
 /*
