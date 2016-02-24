@@ -20,7 +20,11 @@ func (c *MainController) Get() {
 		beego.Error(err)
 	}
 
-	c.Data["pages"] = CalcPaginate(page,100)
+	totalNum,err := models.GetArticleCount()
+	if err != nil {
+		beego.Error(err)
+	}
+	c.Data["pages"] = CalcPaginate(page,10,totalNum)
 	c.Data["awcs"] = awcs
 
 	catagories, err := models.GetCatagories()
@@ -31,5 +35,5 @@ func (c *MainController) Get() {
 
 	c.Data["IsHome"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
-	c.TplNames = "home.html"
+	c.TplName = "home.html"
 }

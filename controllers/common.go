@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"math"
 )
 
 type PageItem struct {
@@ -12,7 +13,7 @@ type PageItem struct {
 
 type Paginate struct {
 	HasPrevious,HasNext bool
-	Previous,Next int
+	Previous,Next,TotalPages int
 	Items [9]*PageItem
 }
 
@@ -26,9 +27,9 @@ func IsLogin(ctx *context.Context) bool {
 	return false
 }
 
-func CalcPaginate(pageNum,maxPages int64) *Paginate {
+func CalcPaginate(pageNum,pageCount,maxPages int64) *Paginate {
 	p := int(pageNum)
-	x := int(maxPages)
+	x := int(math.Ceil(float64(maxPages)/float64(pageCount)))
 	if p < 1 {
 		p = 1
 	}
@@ -40,6 +41,7 @@ func CalcPaginate(pageNum,maxPages int64) *Paginate {
 	paginate.HasNext = p < x
 	paginate.Previous = p -1
 	paginate.Next = p + 1
+	paginate.TotalPages = x
 	for i,v := range [...]int{-4,-3,-2,-1,0,1,2,3,4} {
 		item := new(PageItem)
 		item.Current = v + p

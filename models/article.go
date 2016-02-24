@@ -53,3 +53,11 @@ func DelArticle(id string) error {
 	_, err = db.Delete(&Article{Id: aid})
 	return err
 }
+
+func GetArticleCount() (int64,error) {
+	total,err := db.Count(&Article{})
+	if err != nil {
+		return 0,err
+	}
+	return total,nil
+}

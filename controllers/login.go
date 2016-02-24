@@ -14,7 +14,7 @@ func (c *LoginController) Get() {
 		c.Redirect("/", 301)
 		return
 	}
-	c.TplNames = "login.html"
+	c.TplName = "login.html"
 }
 
 func (c *LoginController) Post() {

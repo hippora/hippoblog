@@ -15,10 +15,8 @@ func init()  {
 	}
 	//engine.SetMaxIdleConns(10)
 	//engine.SetMaxOpenConns(10)
-	db.ShowDebug = true
-	db.ShowErr = true
-	db.ShowSQL = true
-	db.ShowInfo = true
+	db.ShowSQL(true)
+	db.ShowExecTime(true)
 	//engine.ShowWarn = true
 
 	db.Sync2(new(User),new(Catagory),new(Article))

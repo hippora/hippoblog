@@ -28,10 +28,11 @@
                 </div>
             </div>
             {{end}}
+            {{with .pages}}
+            {{if gt .TotalPages 1}}
             <div class="row">
                 <nav>
                     <ul class="pagination">
-                        {{with .pages}}
                         {{if .HasPrevious}}
                         <li>
                             <a href="/?p={{.Previous}}" aria-label="Previous">
@@ -51,10 +52,11 @@
                             </a>
                         </li>
                         {{end}}
-                        {{end}}
                     </ul>
                 </nav>
             </div>
+            {{end}}
+            {{end}}
         </div>
         <div class="col-md-3">
             <div class="panel panel-default ">

@@ -34,6 +34,36 @@
                 {{end}}
                 </tbody>
             </table>
+
+            {{with .pages}}
+            {{if gt .TotalPages 1}}
+            <div class="row">
+                <nav>
+                    <ul class="pagination">
+                        {{if .HasPrevious}}
+                        <li>
+                            <a href="/article?p={{.Previous}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {{end}}
+                        {{range .Items}}
+                        {{if gt .Current 0}}
+                        <li {{if .IsCurrent}}class="active"{{end}}><a {{if not .IsCurrent}}href="/article?p={{.Current}}"{{end}}>{{.Current}}</a></li>
+                        {{end}}
+                        {{end}}
+                        {{if .HasNext}}
+                        <li>
+                            <a href="/article?p={{.Next}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {{end}}
+                    </ul>
+                </nav>
+            </div>
+            {{end}}
+            {{end}}
         </div>
         <div class="col-md-2">.col-md-2</div>
 

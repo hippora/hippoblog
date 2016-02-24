@@ -27,7 +27,7 @@ func (c *CatagoryController) Get() {
 
 	c.Data["IsCatagory"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
-	c.TplNames = "catagory.html"
+	c.TplName = "catagory.html"
 }
 
 func (c *CatagoryController) Post() {

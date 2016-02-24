@@ -19,13 +19,16 @@ func (c *ArticleController) Get() {
 	if err != nil {
 		beego.Error(err)
 	}
-
-	c.Data["pages"] = CalcPaginate(page,100)
+	totalNum,err := models.GetArticleCount()
+	if err != nil {
+		beego.Error(err)
+	}
+	c.Data["pages"] = CalcPaginate(page,10,totalNum)
 	c.Data["awcs"] = awcs
 
 	c.Data["IsArticle"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
-	c.TplNames = "article.html"
+	c.TplName = "article.html"
 }
 
 func (c *ArticleController) Add() {
@@ -41,7 +44,7 @@ func (c *ArticleController) Add() {
 
 	c.Data["IsArticle"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
-	c.TplNames = "article_add.html"
+	c.TplName = "article_add.html"
 }
 
 func (c *ArticleController) Post() {
@@ -59,7 +62,7 @@ func (c *ArticleController) Post() {
 }
 
 func (c *ArticleController) View() {
-	id := c.Ctx.Input.Params["0"]
+	id := c.Ctx.Input.Params()["0"]
 	article, err := models.GetArticle(id)
 	if err != nil {
 		beego.Error(err)
@@ -69,5 +72,5 @@ func (c *ArticleController) View() {
 
 	c.Data["IsArticle"] = true
 	c.Data["IsLogin"] = IsLogin(c.Ctx)
-	c.TplNames = "article_view.html"
+	c.TplName = "article_view.html"
 }
