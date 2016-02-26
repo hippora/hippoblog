@@ -11,11 +11,22 @@ type ArticleController struct {
 }
 
 func (c *ArticleController) Get() {
+	// 是否是删除操作
+	switch c.Input().Get("op") {
+	case "del":
+		if ! IsLogin(c.Ctx) {
+			c.Redirect("/login",301)
+			return
+		}
+		models.DelArticle(c.Input().Get("id"))
+		break
+	}
+	//获取显示第几页
 	page,err := strconv.ParseInt(c.Input().Get("p"),10,64)
 	if err != nil ||  page < 1 {
 		page = 1
 	}
-	awcs, err := models.GetArticleWithCataNames(page)
+	awcs, err := models.GetArticleCatagory(page)
 	if err != nil {
 		beego.Error(err)
 	}
@@ -63,11 +74,11 @@ func (c *ArticleController) Post() {
 
 func (c *ArticleController) View() {
 	id := c.Ctx.Input.Params()["0"]
+	//获取所有文章
 	article, err := models.GetArticle(id)
 	if err != nil {
 		beego.Error(err)
 	}
-
 	c.Data["article"] = article
 
 	c.Data["IsArticle"] = true

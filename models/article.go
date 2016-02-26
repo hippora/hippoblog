@@ -15,13 +15,12 @@ type Article struct {
 	Created    time.Time
 }
 
-type ArticleWithCatagory struct {
-	Article
-	Catagory
-}
-
 func AddArticle(title, cid, content string) error {
 	ccid, err := strconv.ParseInt(cid, 10, 64)
+	if err != nil {
+		return err
+	}
+	_,err = db.Exec("update catagory set article_count = article_count + 1 where id = ?",ccid)
 	if err != nil {
 		return err
 	}
@@ -50,6 +49,10 @@ func DelArticle(id string) error {
 	if err != nil {
 		return err
 	}
+	_,err = db.Exec("update catagory set article_count = article_count - 1 where id = ?",aid)
+	if err != nil {
+		return err
+	}
 	_, err = db.Delete(&Article{Id: aid})
 	return err
 }
@@ -61,3 +64,4 @@ func GetArticleCount() (int64,error) {
 	}
 	return total,nil
 }
+

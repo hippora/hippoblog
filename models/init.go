@@ -17,7 +17,6 @@ func init()  {
 	//engine.SetMaxOpenConns(10)
 	db.ShowSQL(true)
 	db.ShowExecTime(true)
-	//engine.ShowWarn = true
 
 	db.Sync2(new(User),new(Catagory),new(Article))
 }

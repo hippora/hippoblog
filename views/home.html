@@ -9,20 +9,20 @@
             {{range .awcs}}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3 class="post-title"><a href="/article/view/{{.Id}}">{{.Title}}</a></h3>
+                    <h3 class="post-title"><a href="/article/view/{{.Article.Id}}">{{.Article.Title}}</a></h3>
                     <div class="post-content">
-                        <p>{{.Content}}</p>
+                        <p>{{.Article.Content}}</p>
                     </div>
                     <div class="post-meta">
                         <div class="col-md-offset-6">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <span>{{.Author}} | </span>
+                            <span>{{.Article.Author}} | </span>
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            <span>{{.ViewCount}} | </span>
+                            <span>{{.Article.ViewCount}} | </span>
                             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            <span>{{dateformat .Created "2006-01-02 15:04:05"}} |</span>
+                            <span>{{dateformat .Article.Created "2006-01-02 15:04:05"}} |</span>
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            <span>{{or .CataName "未分类"}}</span>
+                            <span>{{or .Catagory.Title "未分类"}}</span>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="list-group">
                     {{range .catagories}}
                     <a href="/article?catagory={{.Id}}" class="list-group-item">{{.Title}}<span
-                            class="badge">18</span></a>
+                            class="badge">{{.ArticleCount}}</span></a>
                     {{end}}
                 </div>
             </div>

@@ -20,16 +20,20 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Views</th>
+                    <th>Catagory</th>
                     <th>Created</th>
+                    <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{range .awcs}}
                 <tr>
-                    <td>{{.Id}}</td>
-                    <td><a href="/article/view/{{.Id}}">{{.Title}}</a></td>
-                    <td>{{.ViewCount}}</td>
-                    <td>{{.Created}}</td>
+                    <td>{{.Article.Id}}</td>
+                    <td><a href="/article/view/{{.Article.Id}}">{{.Article.Title}}</a></td>
+                    <td>{{.Article.ViewCount}}</td>
+                    <td>{{.Catagory.Title}}</td>
+                    <td>{{.Article.Created}}</td>
+                    <td><a href="/article?id={{.Article.Id}}&op=del">Delete</a></td>
                 </tr>
                 {{end}}
                 </tbody>

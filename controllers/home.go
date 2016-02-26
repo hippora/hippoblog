@@ -15,7 +15,7 @@ func (c *MainController) Get() {
 	if err != nil ||  page < 1 {
 		page = 1
 	}
-	awcs, err := models.GetArticleWithCataNames(page)
+	awcs, err := models.GetArticleCatagory(page)
 	if err != nil {
 		beego.Error(err)
 	}
