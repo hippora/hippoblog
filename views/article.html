@@ -32,7 +32,7 @@
                     <td><a href="/article/view/{{.Article.Id}}">{{.Article.Title}}</a></td>
                     <td>{{.Article.ViewCount}}</td>
                     <td>{{.Catagory.Title}}</td>
-                    <td>{{.Article.Created}}</td>
+                    <td>{{dateformat .Article.Created "2006-01-02 15:04:05"}}</td>
                     <td><a href="/article?id={{.Article.Id}}&op=del">Delete</a></td>
                 </tr>
                 {{end}}

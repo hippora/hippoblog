@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <h3 class="post-title"><a href="/article/view/{{.Article.Id}}">{{.Article.Title}}</a></h3>
                     <div class="post-content">
-                        <p>{{.Article.Content}}</p>
+                        <p>{{str2html .Article.Content}}</p>
                     </div>
                     <div class="post-meta">
                         <div class="col-md-offset-6">
