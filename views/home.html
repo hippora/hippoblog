@@ -15,6 +15,7 @@
                     </div>
                     <div class="post-meta">
                         <div class="col-md-offset-6">
+                            <span><a href="/article/view/{{.Article.Id}}#disqus_thread">comments</a> | </span>
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             <span>{{.Article.Author}} | </span>
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -94,5 +95,6 @@
     </div>
 </div>
 {{template "footer" .}}
+<script id="dsq-count-scr" src="//idyi.disqus.com/count.js" async></script>
 </body>
 </html>
