@@ -2,6 +2,7 @@ language: go
 
 go:
   - 1.5
+  - 1.6
   - tip
 
 before_install:
@@ -12,6 +13,8 @@ install:
 
 script: go build -v
 
+after_success:
+  -
 notifications:
   email:
     on_success: change
